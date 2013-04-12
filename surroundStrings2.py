@@ -41,16 +41,16 @@ class inputWindow(QtGui.QMainWindow):
     def create_widgets(self):
         #Widgets
         self.input_edit = QtGui.QPlainTextEdit()
-        self.surround_button = QtGui.QPushButton("Surround with \' \'")
-        self.append_comma_button = QtGui.QPushButton("Append ,")
-        self.append_zero_button = QtGui.QPushButton("Append 0000")
+        self.surround_button = QtGui.QPushButton('Surround with \' \'')
+        self.append_comma_button = QtGui.QPushButton('Append ,')
+        self.append_zero_button = QtGui.QPushButton('Append 0000')
 
         #connect signal
-        QtCore.QObject.connect(self.surround_button, QtCore.SIGNAL("clicked()"), self.on_surround_clicked)
+        QtCore.QObject.connect(self.surround_button, QtCore.SIGNAL('clicked()'), self.on_surround_clicked)
 
-        QtCore.QObject.connect(self.append_comma_button, QtCore.SIGNAL("clicked()"), self.on_append_comma_clicked)
+        QtCore.QObject.connect(self.append_comma_button, QtCore.SIGNAL('clicked()'), self.on_append_comma_clicked)
 
-        QtCore.QObject.connect(self.append_zero_button, QtCore.SIGNAL("clicked()"), self.on_append_zero_clicked)
+        QtCore.QObject.connect(self.append_zero_button, QtCore.SIGNAL('clicked()'), self.on_append_zero_clicked)
 
         #Horizontal layout
         h_box = QtGui.QHBoxLayout()
@@ -87,11 +87,7 @@ class inputWindow(QtGui.QMainWindow):
         """
         Appends each Line, except for the last line, of the inputField with ","
         """
-        out = ''
-        lines = str((self.input_edit.toPlainText())).splitlines()
-        for line in lines:
-            out = out + line + ',' + '\n'
-        out = out.rstrip(',\n')
+        out = self.input_edit.toPlainText().replace(u'\n', u',\n')
         self.input_edit.setPlainText(out)
 
 #------------------------------------------------------------------------------
@@ -100,10 +96,8 @@ class inputWindow(QtGui.QMainWindow):
         """
         Appends to each Line 4 Zeros.
         """
-        out = ''
-        lines = str((self.input_edit.toPlainText())).splitlines()
-        for line in lines:
-            out = out + line + '0000' + '\n'
+        out = self.input_edit.toPlainText().replace(u'\n', u'0000\n')
+        out = out + '0000'
         self.input_edit.setPlainText(out)
 
 #------------------------------------------------------------------------------
@@ -117,6 +111,6 @@ def main():
 
 #------------------------------------------------------------------------------
 
-print "called ", __name__
+print 'called ', __name__
 if __name__ == '__main__':
     main()
