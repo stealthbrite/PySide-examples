@@ -21,6 +21,7 @@ or fill up the line with 0000
 #------------------------------------------------------------------------------
 
 import sys
+import re
 from PySide import QtGui
 from PySide import QtCore
 
@@ -74,11 +75,7 @@ class inputWindow(QtGui.QMainWindow):
         """
         Surrounds each Line of the inputField with "' '"
         """
-        out = ''
-        lines = str((self.input_edit.toPlainText())).splitlines()
-        for line in lines:
-            out = out + '\'' + line.strip() + '\'' + '\n'
-        out = out.rstrip('\n')
+        out = re.sub(ur'(.*)', ur"'\1'", self.input_edit.toPlainText())
         self.input_edit.setPlainText(out)
 
 #------------------------------------------------------------------------------
@@ -96,8 +93,7 @@ class inputWindow(QtGui.QMainWindow):
         """
         Appends to each Line 4 Zeros.
         """
-        out = self.input_edit.toPlainText().replace(u'\n', u'0000\n')
-        out = out + '0000'
+        out = self.input_edit.toPlainText().replace(u'\n', u'0000\n') + u'0000'
         self.input_edit.setPlainText(out)
 
 #------------------------------------------------------------------------------
