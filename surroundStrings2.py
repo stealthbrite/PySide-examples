@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 
-#------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------
 
 __author__ = "stealthbrite"
 __copyright__ = "Copyright 2012, stealthbrite"
@@ -9,7 +9,7 @@ __version__ = "0.1.0"
 __email__ = "stealthbrite@gmail.com"
 __status__ = "Beta"
 
-#------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------
 
 """
 Takes the input and manipulates it
@@ -18,26 +18,26 @@ or append a ,
 or fill up the line with 0000
 """
 
-#------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------
 
 import sys
 import re
 from PySide import QtGui
 from PySide import QtCore
 
-#------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------
 
 
 class inputWindow(QtGui.QMainWindow):
 
-#------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------
 
     def __init__(self, win_parent=None):
         #Init the base class
         QtGui.QMainWindow.__init__(self, win_parent)
         self.create_widgets()
 
-#------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------
 
     def create_widgets(self):
         #Widgets
@@ -68,8 +68,8 @@ class inputWindow(QtGui.QMainWindow):
         central_widget = QtGui.QWidget()
         central_widget.setLayout(v_box)
         self.setCentralWidget(central_widget)
-
-#------------------------------------------------------------------------------
+    
+#-----------------------------------------------------------------------------
 
     def on_surround_clicked(self):
         """
@@ -78,7 +78,7 @@ class inputWindow(QtGui.QMainWindow):
         out = re.sub(ur'(.*)', ur"'\1'", self.input_edit.toPlainText())
         self.input_edit.setPlainText(out)
 
-#------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------
 
     def on_append_comma_clicked(self):
         """
@@ -87,7 +87,7 @@ class inputWindow(QtGui.QMainWindow):
         out = self.input_edit.toPlainText().replace(u'\n', u',\n')
         self.input_edit.setPlainText(out)
 
-#------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------
 
     def on_append_zero_clicked(self):
         """
@@ -96,7 +96,7 @@ class inputWindow(QtGui.QMainWindow):
         out = self.input_edit.toPlainText().replace(u'\n', u'0000\n') + u'0000'
         self.input_edit.setPlainText(out)
 
-#------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------
 
 
 def main():
@@ -105,7 +105,7 @@ def main():
     main_window.show()
     app.exec_()
 
-#------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------
 
 print 'called ', __name__
 if __name__ == '__main__':
