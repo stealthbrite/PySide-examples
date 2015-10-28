@@ -3,3 +3,7 @@ PySide-examples
 
 Scratching the surface of PySide / PyQt - Lightning Talk for PyDdf
 http://stealthbrite.blogspot.de/2013/04/lightning-talk-python-meeting.html
+
+Add a line for even better reabability.
+
+Improve this file further.
